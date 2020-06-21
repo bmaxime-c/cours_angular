@@ -1,8 +1,3 @@
-.WarningAlert {
-    /*background-color: purple;*/
-    color: goldenrod;
-}
-
 .SuccessAlert {
     background-color: greenyellow;
     border: 1px solid green;
