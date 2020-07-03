@@ -8,11 +8,13 @@
       <ul class="list-group">
         <li
           class="list-group-item"
+          [ngClass]="{odd:onlyOdd}"
+          [ngStyle]="{backgroundColor: onlyOdd ? 'green': 'lightblue'}"
           *ngFor="let number of shownNumbers">
           {{number}}
         </li>
       </ul>
-      <ng-template [ngIf]="onlyOdd">
+      <ng-template [ngIf]="onlyOdd" >
         <p>Only odd</p>
       </ng-template>
     </div>
