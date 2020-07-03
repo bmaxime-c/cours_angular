@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  currentItem: string = 'Recipes';
+
+  onNavbarClicked(item) {
+    this.currentItem = item;
+  }
 }
