@@ -9,6 +9,7 @@ export class AppComponent {
   numbers = [1, 2, 3, 4, 5];
   shownNumbers = this.numbers;
   onlyOdd = false;
+  value= 15;
 
   onToggleOdd(): void {
     this.onlyOdd = !this.onlyOdd;
