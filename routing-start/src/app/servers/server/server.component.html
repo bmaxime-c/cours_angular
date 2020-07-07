@@ -1,2 +1,8 @@
-<h5>{{ server.name }}</h5>
-<p>Server status is {{ server.status }}</p>
+<div *ngIf="server; else emptyServer">
+    <h5>{{ server.name }}</h5>
+    <p>Server status is {{ server.status }}</p>
+</div>
+
+<ng-template #emptyServer>
+    Aucun serveur sélectionné
+</ng-template>
