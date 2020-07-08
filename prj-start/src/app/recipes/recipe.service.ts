@@ -5,7 +5,6 @@ import { ShoppingListService } from "../shopping-list/shopping-list.service";
 
 @Injectable()
 export class RecipeService {
-    recipeSelected = new EventEmitter<Recipe>();
     recipesChanged = new EventEmitter<Recipe[]>();
 
     constructor(private slService: ShoppingListService) { }
@@ -41,6 +40,10 @@ export class RecipeService {
 
     getRecipes() {
         return this.recipes.slice();
+    }
+
+    getRecipeByIdx(index:number):Recipe{
+        return this.recipes[index];
     }
 
     deleteRecipe(recipe: Recipe): void {

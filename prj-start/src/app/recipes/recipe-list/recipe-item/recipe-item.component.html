@@ -1,7 +1,6 @@
-<a 
-href="#" 
-class="list-group-item clearfix"
-(click)='onRecipeItemSelected()' >
+<a routerLinkActive="active"
+[routerLink]="['/recipes', index]"
+class="list-group-item clearfix" >
     <div class="pull-left">
         <h4 class="list-group-item-heading">{{ recipe.name}}</h4>
         <div class="list-group-item-text">{{recipe.description}}</div>

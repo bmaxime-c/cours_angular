@@ -8,9 +8,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  currentItem: string = 'Recipes';
-
-  onNavbarClicked(item) {
-    this.currentItem = item;
-  }
 }
