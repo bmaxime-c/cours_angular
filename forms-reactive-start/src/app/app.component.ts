@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
     this.signUpForm = new FormGroup({
       'userData': new FormGroup({
         'username': new FormControl(null, [Validators.required, this.forbiddenNames.bind(this)]),
-        'email': new FormControl(null, [Validators.required, Validators.email]),
+        'email': new FormControl(null, [Validators.required, Validators.email], this.forbiddenEmails.bind(this)),
       }),
       'gender': new FormControl('male'),
       'hobbies': new FormArray([])
@@ -42,5 +43,20 @@ export class AppComponent implements OnInit {
     }
 
     return null;
+  }
+
+  forbiddenEmails(control: FormControl): Promise<any> | Observable<any> {
+    //should be debounced : https://stackoverflow.com/questions/36919011/how-to-add-debounce-time-to-an-async-validator-in-angular-2
+
+    const promise = new Promise<any>((resolve, reject) => {
+      setTimeout(()=> {
+        if(control.value === 'test@test.com') {
+          resolve({'emailIsForbidden': true});
+        }
+        resolve(null);
+      }, 1500);
+    });
+
+    return promise;
   }
 }
