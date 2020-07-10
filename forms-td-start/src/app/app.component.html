@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-        <div id="user-data" ngModelGroup="userData" #userData="ngModelGroup"> 
+        <div id="user-data" ngModelGroup="userData" #userData="ngModelGroup">
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" id="username" class="form-control" ngModel name="username" required>
@@ -34,6 +34,21 @@
         </div>
         <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
       </form>
+      <hr />
+
     </div>
   </div>
+
+  <div class="row" *ngIf="submitted">
+    <div class="col-xs-12">
+      <h3>Your data</h3>
+      <p>Username: {{user.username }}</p>
+      <p>Mail: {{user.email}}</p>
+      <p>Secret question: {{user.secretQuestion}}</p>
+      <p>Answer: {{user.answer}}</p>
+      <p>Question: {{user.secretQuestion}}</p>
+    </div>
+  </div>
+
+
 </div>
