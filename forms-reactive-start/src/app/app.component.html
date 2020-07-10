@@ -7,13 +7,15 @@
             <label for="username">Username</label>
             <input type="text" id="username" class="form-control" formControlName="username">
             <span class="help-block"
-              *ngIf="!signUpForm.get('userData.username').valid && signUpForm.get('userData.username').touched">Please enter a valid
+              *ngIf="!signUpForm.get('userData.username').valid && signUpForm.get('userData.username').touched">Please
+              enter a valid
               username</span>
           </div>
           <div class="form-group">
             <label for="email">email</label>
             <input type="text" id="email" class="form-control" formControlName="email">
-            <span class="help-block" *ngIf="!signUpForm.get('userData.email').valid && signUpForm.get('userData.email').touched">Please
+            <span class="help-block"
+              *ngIf="!signUpForm.get('userData.email').valid && signUpForm.get('userData.email').touched">Please
               enter a valid email</span>
           </div>
         </div>
@@ -24,6 +26,15 @@
               select a value</span>
           </label>
         </div>
+
+        <div formArrayName="hobbies">
+          <h4>Your hobbies</h4>
+          <button class="btn btn-default" type="button" (click)="onAddHobby()">Add hobby</button>
+          <div class="form-group" *ngFor="let hobbyControl of controls; let i = index">
+            <input type="text" [formControlName]="i" class="form-control" />
+          </div>
+        </div>
+
         <button class="btn btn-primary" type="submit">Submit</button>
       </form>
     </div>
