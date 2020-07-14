@@ -14,7 +14,7 @@ export class RecipeEditComponent implements OnInit {
   editMode = false;
   recipeForm: FormGroup;
 
-  get ingredientsControls(): AbstractControl[] { // a getter!
+  getIngredientsControls(): AbstractControl[] { 
     return (<FormArray>this.recipeForm.get('ingredients')).controls;
   }
 
@@ -31,18 +31,23 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.recipeForm);
+    console.log(this.recipeForm.value);
+    if(this.editMode) {
+      this.recipeService.updateRecipe(this.id, this.recipeForm.value);
+    } else {
+      this.recipeService.addRecipe(this.recipeForm.value);
+    }
   }
 
   onAddIngredient(): void {
-    this.ingredientsControls.push(new FormGroup({
+    this.getIngredientsControls().push(new FormGroup({
       'name': new FormControl(null, Validators.required),
               'amount': new FormControl(null, [Validators.required, Validators.min(1)])
     }));
   }
 
   onDeleteIngredient(index: number): void {
-    this.ingredientsControls.splice(index, 1);
+    this.getIngredientsControls().splice(index, 1);
   }
 
   private initForm(): void {

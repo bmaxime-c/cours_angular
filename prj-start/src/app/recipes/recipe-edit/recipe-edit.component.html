@@ -6,6 +6,8 @@
                 <button type="button" class="btn btn-danger">Cancel</button>
             </div>
 
+            <hr />
+
             <div class="row">
                 <div class="col-xs-12">
                     <div class="form-group">
@@ -42,7 +44,7 @@
 
             <div class="row">
                 <div class="col-xs-12" formArrayName="ingredients">
-                    <div style="margin-top: 10px;" *ngFor="let ingredient of ingredientsControls; let i = index"
+                    <div style="margin-top: 10px;" *ngFor="let ingredient of getIngredientsControls(); let i = index"
                         class="row" [formGroupName]="i">
                         <div class="col-xs-8">
                             <input type="text" name="" id="" class="form-control" formControlName="name">
