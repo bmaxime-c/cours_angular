@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { ActivatedRoute, Params } from '@angular/router';
 import { RecipeService } from '../recipe.service';
-import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -14,7 +14,7 @@ export class RecipeEditComponent implements OnInit {
   editMode = false;
   recipeForm: FormGroup;
 
-  get ingredientsControls() { // a getter!
+  get ingredientsControls(): AbstractControl[] { // a getter!
     return (<FormArray>this.recipeForm.get('ingredients')).controls;
   }
 
@@ -34,14 +34,25 @@ export class RecipeEditComponent implements OnInit {
     console.log(this.recipeForm);
   }
 
+  onAddIngredient(): void {
+    this.ingredientsControls.push(new FormGroup({
+      'name': new FormControl(),
+      'amount': new FormControl()
+    }));
+  }
+
+  onDeleteIngredient(index: number): void {
+    this.ingredientsControls.splice(index, 1);
+  }
+
   private initForm(): void {
     let recipe: Recipe = null;
     const recipeIngredients = new FormArray([]);
 
     if (this.editMode) {
       recipe = this.recipeService.getRecipeByIdx(this.id);
-      if(recipe.ingredients){
-        for(let ingredient of recipe.ingredients) {
+      if (recipe.ingredients) {
+        for (let ingredient of recipe.ingredients) {
           recipeIngredients.push(
             new FormGroup({
               'name': new FormControl(ingredient.name),
