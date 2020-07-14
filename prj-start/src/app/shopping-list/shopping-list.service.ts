@@ -26,6 +26,11 @@ export class ShoppingListService {
     ngOnInit(): void {
     }
 
+    updateIngredient(index: number, newIngredient: Ingredient) {
+        this.ingredients[index] = newIngredient;
+        this.ingredientsChanged.next(this.ingredients.slice());
+    }
+
     addIngredient(ingredient: Ingredient, silent: boolean = false) {
         var ingredientUpdated: boolean = false;
         for (var i in this.ingredients) {
