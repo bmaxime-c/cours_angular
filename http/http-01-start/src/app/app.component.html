@@ -60,7 +60,9 @@
       </ul>
       <p *ngIf="isFetching">Loading...</p>
       <div class="alert alert-danger" *ngIf="error !== ''"><h1>An error occured!</h1>
-      <p>{{error}}</p></div>
+      <p>{{error}}</p>
+      <button class="btn btn-primary" (click)="onHandleError()">OK</button>
+    </div>
     </div>
   </div>
 </div>
