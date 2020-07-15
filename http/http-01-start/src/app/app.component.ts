@@ -26,10 +26,16 @@ export class AppComponent implements OnInit {
   }
 
   onFetchPosts() {
-    // Send Http request
+    this.fetchPosts();
   }
 
   onClearPosts() {
     // Send Http request
+  }
+
+  fetchPosts() {
+    this.http.get('https://ng-complete-guide-28728.firebaseio.com/posts.json').subscribe(posts => {
+      console.log(posts);
+    });
   }
 }
