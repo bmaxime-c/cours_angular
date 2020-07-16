@@ -7,29 +7,31 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { RecipeStartComponent } from "./recipes/recipe-start/recipe-start.component";
 import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
 import { RecipesResolverService } from "./recipes/recipes-resolver.service";
+import { AuthComponent } from "./auth/auth/auth.component";
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: '/recipes', pathMatch:'full' },
-    { 
-      path: 'recipes', component: RecipesComponent, children: [
-        { path: '', component: RecipeStartComponent },
-        { path: 'new', component: RecipeEditComponent },
-        { path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService] },
-        { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolverService] },
-      ]
-    },
-    { path: 'shopping-list', component: ShoppingListComponent },
-    { path: 'not-found', component: PageNotFoundComponent },
-    { path: '**', redirectTo: '/not-found' },
-  ];
+  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
+  {
+    path: 'recipes', component: RecipesComponent, children: [
+      { path: '', component: RecipeStartComponent },
+      { path: 'new', component: RecipeEditComponent },
+      { path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService] },
+      { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolverService] },
+    ]
+  },
+  { path: 'auth', component: AuthComponent },
+  { path: 'shopping-list', component: ShoppingListComponent },
+  { path: 'not-found', component: PageNotFoundComponent },
+  { path: '**', redirectTo: '/not-found' },
+];
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot(appRoutes, {useHash: false})
-    ],
-    exports: [
-        RouterModule
-    ]
+  imports: [
+    RouterModule.forRoot(appRoutes, { useHash: false })
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule {
 
