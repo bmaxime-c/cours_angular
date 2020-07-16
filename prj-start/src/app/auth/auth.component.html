@@ -1,6 +1,12 @@
 <div class="row">
   <div class="col-xs-12 col-md-6 col-md-offset-3">
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="alert alert-danger" *ngIf="error !== null">
+      <p>{{ error }}</p>
+    </div>
+    <div *ngIf="isLoading" style="text-align: center;">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="!isLoading">
       <div class="form-group">
         <label for="email">Email</label>
         <input
@@ -8,7 +14,7 @@
           name="email"
           id="email"
           class="form-control"
-          [ngModel]="email"
+          ngModel
           required
           email
         />
@@ -20,7 +26,7 @@
           name="password"
           id="password"
           class="form-control"
-          [ngModel]="password"
+          ngModel
           required
           minlength="6"
         />
