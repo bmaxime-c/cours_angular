@@ -14,5 +14,7 @@ export class User {
         return this._token;
     }
 
-
+    get expiresIn() : number {
+        return (this._tokenExpirationDate.getTime() - new Date().getTime() * 1000);
+    }
 }
